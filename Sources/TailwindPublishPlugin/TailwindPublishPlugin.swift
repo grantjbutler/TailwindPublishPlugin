@@ -78,4 +78,17 @@ private enum TailwindCSSError: Error {
     case tailwindNotInstalled
     case noConfigFile
     case noStyles
+    
+    var localizedDescription: String {
+        switch self {
+        case .noNPMPackage:
+            return "Could not find your package.json file."
+        case .tailwindNotInstalled:
+            return "Tailwind is not installed in your NPM package."
+        case .noConfigFile:
+            return "Could not find your Tailwind config file."
+        case .noStyles:
+            return "Could not find your base styles."
+        }
+    }
 }
