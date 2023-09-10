@@ -4,6 +4,13 @@ import Publish
 import ShellOut
 
 extension PublishingStep {
+    /// Creates a step that runs Tailwind and generates a CSS file in the output folder.
+    /// - Parameters:
+    ///   - inputPath: The path to a source CSS file that contains the Tailwind CSS directives. Defaults to `Resources/styles.css`
+    ///   - outputPath: The path to a file within the output folder that will contain the generated styles. Defaults to `styles.css`.
+    ///   - configPath: The path to a Tailwind config file. Defaults to `tailwind.config.js`.
+    ///   - packagePath: The path to an NPM package. This path is used to verify that Tailwind is installed and is used
+    ///                  to determine the directory from which to run Tailwind. Defaults to `package.json`.
     public static func generateTailwindCSS(
         inputPath: Path = "Resources/styles.css",
         outputPath: Path = "styles.css",
