@@ -3,7 +3,7 @@ import Foundation
 import Publish
 import ShellOut
 
-extension PublishingStep {
+extension Plugin {
     /// Creates a step that runs Tailwind and generates a CSS file in the output folder.
     /// - Parameters:
     ///   - inputPath: The path to a source CSS file that contains the Tailwind CSS directives. Defaults to `Resources/styles.css`
@@ -11,13 +11,13 @@ extension PublishingStep {
     ///   - configPath: The path to a Tailwind config file. Defaults to `tailwind.config.js`.
     ///   - packagePath: The path to an NPM package. This path is used to verify that Tailwind is installed and is used
     ///                  to determine the directory from which to run Tailwind. Defaults to `package.json`.
-    public static func generateTailwindCSS(
+    public static func tailwind(
         inputPath: Path = "Resources/styles.css",
         outputPath: Path = "styles.css",
         configPath: Path = "tailwind.config.js",
         packagePath: Path = "package.json"
-    ) -> PublishingStep {
-        return .step(named: "Generate Tailwind CSS", body: { context in
+    ) -> Plugin {
+        .init(name: "Tailwind CSS") { context in
             let npmPackageRootPath = try verifyNPMPackage(at: packagePath, context: context)
         
             let configFile: File
@@ -41,7 +41,7 @@ extension PublishingStep {
                 arguments: ["tailwindcss", "-c", configFile.path, "-i", inputFile.path, "-o", outputFile.path, "--minify"],
                 at: npmPackageRootPath
             )
-        })
+        }
     }
 }
 
