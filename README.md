@@ -1,6 +1,6 @@
 # TailwindPublishPlugin
 
-A [Publish](https://github.com/johnsundell/publish) that integrates [Tailwind](https://tailwindcss.com) into the website generation pipeline.
+A [Publish](https://github.com/johnsundell/publish) plugin that integrates [Tailwind](https://tailwindcss.com) into the website generation pipeline.
 
 ## Installation
 
